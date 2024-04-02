@@ -5,9 +5,11 @@ import {
   View,
   Modal,
   TouchableOpacity,
+  FlatList,
 } from "react-native";
 import React from "react";
 import Slider from "@react-native-community/slider";
+import getStars from "../../utils/functions/getStars";
 
 const MovieDetailsModal = ({ open, setOpen }) => {
   const [value, setValue] = React.useState(0);
@@ -53,6 +55,12 @@ const MovieDetailsModal = ({ open, setOpen }) => {
               maximumTrackTintColor="#000000"
             />
             <Text style={{ color: "white" }}>Rating: {value}</Text>
+            <FlatList
+              data={getStars(value, 20)}
+              horizontal
+              renderItem={({ item }) => item}
+              keyExtractor={(_, index) => index.toString()}
+            />
           </View>
           <TouchableOpacity
             style={styles.openButton}
