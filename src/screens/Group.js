@@ -273,6 +273,7 @@ const styles = StyleSheet.create({
   groupName: {
     fontSize: 32,
     marginBottom: 10,
+
     color: "#bbc9f2",
     textAlign: "left",
     fontWeight: "bold",
