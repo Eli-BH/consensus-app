@@ -28,7 +28,12 @@ const MovieDetailsModal = ({ open, setOpen }) => {
 
             <View>
               <Text style={styles.movieHeader.title}>Movie Title</Text>
-              <Text style={styles.modalText}>2024-03-29 (US)</Text>
+              <Text style={styles.movieHeader.dateText}>2024-03-29 (US)</Text>
+              <TouchableOpacity style={styles.movieHeader.trailerButton}>
+                <Text style={styles.movieHeader.trailerButtonText}>
+                  View Trailer
+                </Text>
+              </TouchableOpacity>
             </View>
             <View></View>
           </View>
@@ -63,6 +68,31 @@ const styles = StyleSheet.create({
     title: {
       color: "white",
       fontSize: 20,
+      fontWeight: "bold",
+    },
+
+    dateText: {
+      color: "white",
+      fontSize: 12,
+      marginBottom: 5,
+    },
+
+    trailerButton: {
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "blue",
+      borderRadius: 5,
+      color: "white",
+      fontSize: 14,
+      borderColor: "white",
+      borderWidth: 2,
+      padding: 5,
+      marginTop: 5,
+    },
+
+    trailerButtonText: {
+      color: "white",
+      fontSize: 12,
       fontWeight: "bold",
     },
   },
