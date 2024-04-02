@@ -7,8 +7,11 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React from "react";
+import Slider from "@react-native-community/slider";
 
 const MovieDetailsModal = ({ open, setOpen }) => {
+  const [value, setValue] = React.useState(0);
+
   return (
     <Modal
       animationType="slide"
@@ -23,7 +26,7 @@ const MovieDetailsModal = ({ open, setOpen }) => {
           <View style={styles.movieHeader}>
             <Image
               source={{ uri: "https://source.unsplash.com/random/400x500" }}
-              style={{ width: 60, height: 90 }}
+              style={{ width: 80, height: 120 }}
             />
 
             <View>
@@ -38,8 +41,19 @@ const MovieDetailsModal = ({ open, setOpen }) => {
             <View></View>
           </View>
 
-          <View></View>
-          <Text style={styles.modalText}>Movie Details</Text>
+          <View>
+            <Slider
+              value={value}
+              onValueChange={(value) => setValue(value)}
+              style={{ width: 300, height: 40 }}
+              minimumValue={1}
+              maximumValue={10}
+              step={0.5}
+              minimumTrackTintColor="#FFFFFF"
+              maximumTrackTintColor="#000000"
+            />
+            <Text style={{ color: "white" }}>Rating: {value}</Text>
+          </View>
           <TouchableOpacity
             style={styles.openButton}
             onPress={() => {
@@ -60,10 +74,9 @@ const styles = StyleSheet.create({
   movieHeader: {
     flexDirection: "row",
     justifyContent: "flex-start",
-    gap: 10,
+    gap: 15,
     width: "100%",
     marginBottom: 10,
-    backgroundColor: "red",
 
     title: {
       color: "white",
@@ -84,15 +97,15 @@ const styles = StyleSheet.create({
       borderRadius: 5,
       color: "white",
       fontSize: 14,
-      borderColor: "white",
-      borderWidth: 2,
+      borderColor: "#00fa9a",
+      borderWidth: 1,
       padding: 5,
-      marginTop: 5,
+      marginTop: 25,
     },
 
     trailerButtonText: {
       color: "white",
-      fontSize: 12,
+      fontSize: 14,
       fontWeight: "bold",
     },
   },
@@ -106,8 +119,8 @@ const styles = StyleSheet.create({
   modalView: {
     margin: 20,
     backgroundColor: "#191970",
-    borderWidth: 4,
-    borderColor: "#",
+    borderWidth: 2,
+    borderColor: "#00fa9a",
     borderRadius: 5,
     height: "60%",
     width: "90%",

@@ -20,7 +20,7 @@ const Group = () => {
   const [inviteModal, setInviteModal] = useState(false);
 
   const getStars = (stars, size = 24) => {
-    if (stars > 5) stars /= 2;
+    stars /= 2;
     let starArray = [];
     for (let i = 1; i <= stars; i += 0.5) {
       i % 1 === 0 &&
