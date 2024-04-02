@@ -5,12 +5,14 @@ import {
   TouchableOpacity,
   FlatList,
   ScrollView,
-  Image,
   Modal,
 } from "react-native";
 import React, { useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MovieCard from "../components/groupCards/MovieCard";
+import InviteModal from "../components/Modals/InviteModal";
+import MovieDetailsModal from "../components/Modals/MovieDetailsModal";
+import AddMovieModal from "../components/Modals/AddMovieModal";
 
 const Group = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -34,88 +36,9 @@ const Group = () => {
 
   return (
     <View style={styles.container}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={modalStyles.centeredView}>
-          <View style={modalStyles.modalView}>
-            <View>
-              <Image
-                source={{ uri: "https://source.unsplash.com/random/400x500" }}
-                style={{ width: 60, height: 90 }}
-              />
-
-              <View>
-                <Text style={modalStyles.modalText}>Movie Title</Text>
-                <Text style={modalStyles.modalText}>2024-03-29 (US)</Text>
-              </View>
-              <View></View>
-            </View>
-
-            <View></View>
-            <Text style={modalStyles.modalText}>Movie Details</Text>
-            <TouchableOpacity
-              style={styles.openButton}
-              onPress={() => {
-                setModalVisible(!modalVisible);
-              }}
-            >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
-
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={addMovieModal}
-        onRequestClose={() => {
-          setAddMovieModal(!addMovieModal);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Add movie</Text>
-            <TouchableOpacity
-              style={styles.openButton}
-              onPress={() => {
-                setAddMovieModal(!addMovieModal);
-              }}
-            >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
-
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={inviteModal}
-        onRequestClose={() => {
-          setInviteModal(!inviteModal);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Invite friends!</Text>
-            <TouchableOpacity
-              style={styles.openButton}
-              onPress={() => {
-                setInviteModal(!inviteModal);
-              }}
-            >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
+      <MovieDetailsModal open={modalVisible} setOpen={setModalVisible} />
+      <AddMovieModal open={addMovieModal} setOpen={setAddMovieModal} />
+      <InviteModal setOpen={setInviteModal} open={inviteModal} />
 
       <View style={styles.headerContainer}>
         <View style={styles.headerLeft}>
@@ -162,47 +85,6 @@ const Group = () => {
 };
 
 export default Group;
-
-const modalStyles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 12,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "#4c4",
-    borderRadius: 5,
-    height: "60%",
-    width: "90%",
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  openButton: {
-    backgroundColor: "#F194FF",
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center",
-  },
-});
 
 const styles = StyleSheet.create({
   avgRatingText: {
@@ -311,42 +193,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#0b0b21",
     marginVertical: 10,
   },
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 12,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "#4ccdc4",
-    borderRadius: 5,
-    height: "60%",
-    width: "90%",
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  openButton: {
-    backgroundColor: "#F194FF",
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
   textStyle: {
     color: "white",
     fontWeight: "bold",
-    textAlign: "center",
-  },
-  modalText: {
-    marginBottom: 15,
     textAlign: "center",
   },
 });
