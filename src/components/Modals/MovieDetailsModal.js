@@ -6,6 +6,7 @@ import {
   Modal,
   TouchableOpacity,
   FlatList,
+  TextInput,
 } from "react-native";
 import React from "react";
 import Slider from "@react-native-community/slider";
@@ -43,23 +44,35 @@ const MovieDetailsModal = ({ open, setOpen }) => {
             <View></View>
           </View>
 
-          <View>
-            <Slider
-              value={value}
-              onValueChange={(value) => setValue(value)}
-              style={{ width: 300, height: 40 }}
-              minimumValue={1}
-              maximumValue={10}
-              step={0.5}
-              minimumTrackTintColor="#FFFFFF"
-              maximumTrackTintColor="#000000"
-            />
-            <Text style={{ color: "white" }}>Rating: {value}</Text>
-            <FlatList
-              data={getStars(value, 20)}
-              horizontal
-              renderItem={({ item }) => item}
-              keyExtractor={(_, index) => index.toString()}
+          <View style={styles.ratingContainer}>
+            <View style={styles.ratingContainer.sliderContainer}>
+              <Text style={styles.ratingContainer.title}>Rate this movie</Text>
+              <Slider
+                value={value}
+                onValueChange={(value) => setValue(value)}
+                style={styles.ratingContainer.ratingSlider}
+                minimumValue={1}
+                maximumValue={10}
+                step={0.5}
+                minimumTrackTintColor="#FFFFFF"
+                maximumTrackTintColor="#000000"
+              />
+            </View>
+
+            <View style={styles.ratingContainer.ratingIdicator}>
+              <Text style={styles.ratingContainer.ratingText}>{value}</Text>
+              <FlatList
+                data={getStars(value, 20)}
+                horizontal
+                renderItem={({ item }) => item}
+                keyExtractor={(_, index) => index.toString()}
+              />
+            </View>
+          </View>
+          <View style={styles.commentSection}>
+            <TextInput
+              placeholder="Add a comment"
+              style={styles.commentSection.input}
             />
           </View>
           <TouchableOpacity
@@ -79,6 +92,59 @@ const MovieDetailsModal = ({ open, setOpen }) => {
 export default MovieDetailsModal;
 
 const styles = StyleSheet.create({
+  commentSection: {
+    width: "100%",
+    height: 100,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20,
+
+    input: {
+      width: "90%",
+
+      backgroundColor: "white",
+      borderColor: "#00fa9a",
+      borderWidth: 1,
+      borderRadius: 5,
+      padding: 10,
+    },
+  },
+  ratingContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+    width: "100%",
+
+    title: {
+      color: "white",
+      fontSize: 16,
+    },
+
+    ratingIdicator: {
+      justifyContent: "center",
+      alignItems: "center",
+      gap: 5,
+      width: "35%",
+    },
+    ratingText: {
+      color: "white",
+      fontSize: 40,
+      fontWeight: "bold",
+    },
+
+    ratingSlider: {
+      width: "100%",
+      height: 40,
+    },
+
+    sliderContainer: {
+      justifyContent: "flex-end",
+      alignItems: "center",
+      gap: 5,
+      width: "65%",
+    },
+  },
+
   movieHeader: {
     flexDirection: "row",
     justifyContent: "flex-start",
@@ -130,9 +196,9 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#00fa9a",
     borderRadius: 5,
-    height: "60%",
+    height: 450,
     width: "90%",
-    padding: 15,
+    padding: 10,
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
