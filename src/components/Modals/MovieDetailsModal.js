@@ -42,7 +42,11 @@ const MovieDetailsModal = ({ open, setOpen }) => {
                 </Text>
               </TouchableOpacity>
             </View>
-            <View></View>
+            <View style={styles.movieHeader.groupRatingBlocked}>
+              <Text style={styles.movieHeader.groupRatingBlockedText}>
+                Rate to see group score
+              </Text>
+            </View>
           </View>
 
           <View style={styles.ratingContainer}>
@@ -160,6 +164,26 @@ const styles = StyleSheet.create({
     width: "100%",
     marginBottom: 10,
 
+    groupRatingBlockedText: {
+      color: "#ffffff",
+      fontSize: 12,
+      fontWeight: "bold",
+      textAlign: "center",
+    },
+
+    groupRatingBlocked: {
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "#0b0b21",
+      borderRadius: 5,
+      color: "white",
+      fontSize: 14,
+      borderColor: "#00fa9a",
+      borderWidth: 2,
+      padding: 5,
+      marginLeft: 15,
+      width: 100,
+    },
     title: {
       color: "white",
       fontSize: 20,
