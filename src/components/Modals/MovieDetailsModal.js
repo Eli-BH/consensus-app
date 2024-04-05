@@ -5,6 +5,7 @@ import {
   View,
   Modal,
   TouchableOpacity,
+  KeyboardAvoidingView,
   FlatList,
   TextInput,
 } from "react-native";
@@ -13,7 +14,7 @@ import Slider from "@react-native-community/slider";
 import getStars from "../../utils/functions/getStars";
 
 const MovieDetailsModal = ({ open, setOpen }) => {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(5);
 
   return (
     <Modal
@@ -73,7 +74,13 @@ const MovieDetailsModal = ({ open, setOpen }) => {
             <TextInput
               placeholder="Add a comment"
               style={styles.commentSection.input}
+              multiline
+              textAlignVertical="top"
+              maxLength={500}
             />
+            <TouchableOpacity>
+              <Text>Submit</Text>
+            </TouchableOpacity>
           </View>
           <TouchableOpacity
             style={styles.openButton}
@@ -100,7 +107,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
 
     input: {
-      width: "90%",
+      width: "100%",
 
       backgroundColor: "white",
       borderColor: "#00fa9a",
@@ -110,6 +117,7 @@ const styles = StyleSheet.create({
     },
   },
   ratingContainer: {
+    marginTop: 20,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-end",
