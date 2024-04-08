@@ -12,6 +12,7 @@ import {
 import React from "react";
 import Slider from "@react-native-community/slider";
 import getStars from "../../utils/functions/getStars";
+import * as Haptics from "expo-haptics";
 
 const MovieDetailsModal = ({ open, setOpen }) => {
   const [value, setValue] = React.useState(5);
@@ -50,7 +51,10 @@ const MovieDetailsModal = ({ open, setOpen }) => {
               <Text style={styles.ratingContainer.title}>Rate this movie</Text>
               <Slider
                 value={value}
-                onValueChange={(value) => setValue(value)}
+                onValueChange={(value) => {
+                  setValue(value);
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                }}
                 style={styles.ratingContainer.ratingSlider}
                 minimumValue={1}
                 maximumValue={10}
@@ -77,11 +81,13 @@ const MovieDetailsModal = ({ open, setOpen }) => {
               multiline
               textAlignVertical="top"
               maxLength={500}
+              autoCorrect
             />
-            <TouchableOpacity>
-              <Text>Submit</Text>
+            <TouchableOpacity style={styles.commentSection.submitButton}>
+              <Text style={styles.commentSection.buttonText}>Submit</Text>
             </TouchableOpacity>
           </View>
+
           <TouchableOpacity
             style={styles.openButton}
             onPress={() => {
@@ -106,18 +112,40 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 20,
 
+    buttonText: {
+      color: "white",
+      fontSize: 20,
+      fontWeight: "bold",
+      letterSpacing: 1,
+    },
+
+    submitButton: {
+      backgroundColor: "#00fa9a",
+      padding: 10,
+      borderTopLeftRadius: 1,
+      borderTopRightRadius: 1,
+      borderRadius: 5,
+      marginTop: 0,
+      width: "100%",
+
+      justifyContent: "center",
+      alignItems: "center",
+    },
+
     input: {
+      flex: 1,
       width: "100%",
 
       backgroundColor: "white",
       borderColor: "#00fa9a",
       borderWidth: 1,
-      borderRadius: 5,
+      borderTopLeftRadius: 5,
+      borderTopRightRadius: 5,
       padding: 10,
     },
   },
   ratingContainer: {
-    marginTop: 20,
+    marginTop: 10,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-end",
@@ -204,7 +232,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#00fa9a",
     borderRadius: 5,
-    height: 450,
+    height: 500,
     width: "90%",
     padding: 10,
     alignItems: "center",
@@ -222,6 +250,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     elevation: 2,
+    marginTop: "auto",
   },
   textStyle: {
     color: "white",
