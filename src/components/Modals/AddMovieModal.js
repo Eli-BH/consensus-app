@@ -4,7 +4,7 @@ import React from "react";
 const AddMovieModal = ({ setOpen, open }) => {
   return (
     <Modal
-      animationType="fade"
+      animationType="slide"
       transparent={true}
       visible={open}
       onRequestClose={() => {
