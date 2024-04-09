@@ -1,7 +1,15 @@
-import { StyleSheet, Text, View, Modal, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Modal,
+  TouchableOpacity,
+  StyleSheet,
+  TextInput,
+} from "react-native";
 import React from "react";
 
-const InviteModal = ({ setOpen, open }) => {
+const AddGroupModal = ({ setOpen, open }) => {
   return (
     <Modal
       animationType="fade"
@@ -12,15 +20,32 @@ const InviteModal = ({ setOpen, open }) => {
       }}
     >
       <View style={styles.centeredView}>
-        <View style={styles.modalView}>
-          <Text style={styles.modalText}>Invite friends!</Text>
+        <View>
+          <Text style={styles.modalText}>Create a group:</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Group name"
+            placeholderTextColor="#004"
+          />
+        </View>
+
+        <View>
+          <Text style={styles.modalText}>Use Invite code:</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Invite code"
+            placeholderTextColor="#004"
+          />
+        </View>
+
+        <View style={styles.submitContainer}>
           <TouchableOpacity
             style={styles.openButton}
             onPress={() => {
               setOpen(!open);
             }}
           >
-            <Text style={styles.textStyle}>Hide Modal</Text>
+            <Text style={styles.textStyle}>Add Group</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -28,9 +53,18 @@ const InviteModal = ({ setOpen, open }) => {
   );
 };
 
-export default InviteModal;
+export default AddGroupModal;
 
 const styles = StyleSheet.create({
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    width: 200,
+    borderRadius: 5,
+  },
+
   centeredView: {
     flex: 1,
     justifyContent: "center",
@@ -58,15 +92,19 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     textAlign: "center",
   },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
   openButton: {
     backgroundColor: "#F194FF",
     borderRadius: 20,
     padding: 10,
     elevation: 2,
   },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
+  submitContainer: {
+    marginTop: 20,
+    width: "100%",
   },
 });

@@ -4,6 +4,7 @@ import GroupCard from "../components/homeCards/GroupCard";
 import AddCard from "../components/homeCards/AddCard";
 
 const Home = ({ navigation }) => {
+  const [open, setOpen] = React.useState(false);
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
@@ -11,7 +12,7 @@ const Home = ({ navigation }) => {
       </View>
 
       <View style={styles.bodyCard}>
-        <AddCard />
+        <AddCard open={open} setOpen={setOpen} />
         <GroupCard navigation={navigation} />
       </View>
     </View>

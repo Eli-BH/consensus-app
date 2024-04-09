@@ -19,7 +19,7 @@ const MovieDetailsModal = ({ open, setOpen }) => {
 
   return (
     <Modal
-      animationType="slide"
+      animationType="fade"
       transparent={true}
       visible={open}
       onRequestClose={() => {

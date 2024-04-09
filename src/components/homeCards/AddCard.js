@@ -1,7 +1,5 @@
 // Removed unused imports
-import { Button } from "react-native";
-
-import { StyleSheet } from "react-native";
+import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
 // Firestore imports remain unchanged
 import { getFirestore, collection, doc, setDoc } from "firebase/firestore";
 import app from "../../../firebaseConfig";
@@ -17,24 +15,29 @@ const newGroup = {
   ratings: [{ movie: "1", rating: "5", user: "1" }],
 };
 
-const AddCard = () => {
-  const db = getFirestore(app); // Initialize Firestore
+const AddCard = ({ open, setOpen }) => {
+  // const db = getFirestore(app); // Initialize Firestore
 
-  const addGroup = async (groupData) => {
-    console.log("Attempting to add group...");
+  // const addGroup = async (groupData) => {
+  //   console.log("Attempting to add group...");
 
-    try {
-      const docRef = doc(db, "groups", groupData.name); // Corrected to define docRef
-      await setDoc(docRef, groupData);
+  //   try {
+  //     const docRef = doc(db, "groups", groupData.name); // Corrected to define docRef
+  //     await setDoc(docRef, groupData);
+  //   } catch (error) {
+  //     console.error("Error adding document: ", error);
+  //   }
+  // };
 
-      console.log("Document successfully written!");
-      console.log("Group reference: ", docRef); // Corrected log
-    } catch (error) {
-      console.error("Error adding document: ", error);
-    }
-  };
+  return (
+    <TouchableOpacity style={styles.card} onPress={() => setOpen(true)}>
+      <View style={styles.iconContainer}>
+        <Text style={styles.icon}>+</Text>
+      </View>
 
-  return <Button title="Add Group" onPress={() => addGroup(newGroup)} />;
+      <Text style={styles.cardText}>Add group</Text>
+    </TouchableOpacity>
+  );
 };
 
 export default AddCard;
@@ -54,16 +57,27 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 4,
   },
-  // Other styles remain unchanged
+  iconContainer: {
+    backgroundColor: "#004",
+    borderRadius: 50,
+    width: 40,
+    height: 40,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  icon: {
+    fontSize: 25,
+    color: "#fff",
+  },
+  cardText: {
+    color: "#bbc9f2",
+    fontSize: 16,
+    textAlign: "center",
+    fontFamily: "sans-serif",
+  },
 });
 
 /*
-    <TouchableOpacity style={styles.card} onPress={() => addGroup(newGroup)}>
-      <View style={styles.iconContainer}>
-        <Text style={styles.icon}>+</Text>
-      </View>
-
-      <Text style={styles.cardText}>Add group</Text>
-    </TouchableOpacity>
+   
 
     */
