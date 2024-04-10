@@ -1,4 +1,14 @@
-import { StyleSheet, Text, View, Modal, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Modal,
+  TouchableOpacity,
+  TextInput,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import React from "react";
 
 const AddMovieModal = ({ setOpen, open }) => {
@@ -11,19 +21,27 @@ const AddMovieModal = ({ setOpen, open }) => {
         setOpen(!open);
       }}
     >
-      <View style={styles.centeredView}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.centeredView}
+      >
         <View style={styles.modalView}>
-          <Text style={styles.modalText}>Add movie</Text>
-          <TouchableOpacity
-            style={styles.openButton}
-            onPress={() => {
-              setOpen(!open);
-            }}
-          >
-            <Text style={styles.textStyle}>Hide Modal</Text>
-          </TouchableOpacity>
+          <View style={styles.searchContainer}>
+            <TextInput
+              style={styles.searchInput}
+              placeholder="Search"
+              placeholderTextColor="#004"
+            />
+
+            <Ionicons
+              name="search"
+              size={24}
+              color="#004"
+              style={styles.searchIcon}
+            />
+          </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 };
@@ -31,6 +49,26 @@ const AddMovieModal = ({ setOpen, open }) => {
 export default AddMovieModal;
 
 const styles = StyleSheet.create({
+  searchInput: {
+    backgroundColor: "#4ccdc4",
+    width: "80%",
+    textDecorationLine: "none",
+    color: "#004",
+    borderRadius: 5,
+    letterSpacing: 0.6,
+    fontSize: 16,
+    fontWeight: "bold",
+    marginTop: 10,
+  },
+  searchContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
+    borderBottomWidth: 1,
+    borderBottomColor: "#004",
+    marginBottom: 10,
+  },
   centeredView: {
     flex: 1,
     justifyContent: "center",
@@ -41,7 +79,7 @@ const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: "#4ccdc4",
     borderRadius: 5,
-    height: "60%",
+    height: 500,
     width: "90%",
     padding: 35,
     alignItems: "center",

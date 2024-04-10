@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   FlatList,
   ScrollView,
+  Dimensions,
 } from "react-native";
 import React, { useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -14,6 +15,7 @@ import MovieDetailsModal from "../components/Modals/MovieDetailsModal";
 import AddMovieModal from "../components/Modals/AddMovieModal";
 import getStars from "../utils/functions/getStars";
 
+const height = Dimensions.get("window").height;
 const Group = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [addMovieModal, setAddMovieModal] = useState(false);
@@ -129,6 +131,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    height: height,
     backgroundColor: "#020129",
     alignItems: "center",
     justifyContent: "center",
