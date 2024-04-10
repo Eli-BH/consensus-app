@@ -16,6 +16,7 @@ import AddMovieModal from "../components/Modals/AddMovieModal";
 import getStars from "../utils/functions/getStars";
 
 const height = Dimensions.get("window").height;
+
 const Group = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [addMovieModal, setAddMovieModal] = useState(false);
