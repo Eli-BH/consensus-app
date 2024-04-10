@@ -95,7 +95,9 @@ const AddMovieModal = ({ setOpen, open }) => {
                       justifyContent: "flex-start",
                     }}
                   >
-                    <Text style={styles.movieCard.title}>{item.name}</Text>
+                    <Text allowFontScaling style={styles.movieCard.title}>
+                      {item.name}
+                    </Text>
                     <Text style={styles.movieCard.releaseYear}>
                       ({item.releaseYear})
                     </Text>
