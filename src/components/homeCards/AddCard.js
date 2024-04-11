@@ -16,8 +16,10 @@ const newGroup = {
   ratings: [{ movie: "1", rating: "5", user: "1" }],
 };
 
+
 const AddCard = ({ open, setOpen }) => {
   // const db = getFirestore(app); // Initialize Firestore
+
 
   // const addGroup = async (groupData) => {
   //   console.log("Attempting to add group...");
@@ -25,6 +27,10 @@ const AddCard = ({ open, setOpen }) => {
   //   try {
   //     const docRef = doc(db, "groups", groupData.name); // Corrected to define docRef
   //     await setDoc(docRef, groupData);
+
+
+  //     console.log("Document successfully written!");
+  //     console.log("Group reference: ", docRef); // Corrected log
   //   } catch (error) {
   //     console.error("Error adding document: ", error);
   //   }
@@ -37,7 +43,6 @@ const AddCard = ({ open, setOpen }) => {
         <View style={styles.iconContainer}>
           <Text style={styles.icon}>+</Text>
         </View>
-
         <Text style={styles.cardText}>Add group</Text>
       </TouchableOpacity>
     </React.Fragment>

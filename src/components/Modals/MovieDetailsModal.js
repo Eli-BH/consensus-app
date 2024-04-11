@@ -90,15 +90,11 @@ const MovieDetailsModal = ({ open, setOpen }) => {
               <Text style={styles.commentSection.buttonText}>Submit</Text>
             </TouchableOpacity>
           </View>
-
-          <TouchableOpacity
-            style={styles.openButton}
-            onPress={() => {
-              setOpen(!open);
-            }}
-          >
-            <Text style={styles.textStyle}>Hide Modal</Text>
-          </TouchableOpacity>
+          <View style={styles.commentSection.loginTextContianer}>
+            <Text style={styles.commentSection.loginText}>
+              Rate the movie to see the comments
+            </Text>
+          </View>
         </View>
       </View>
     </Modal>
@@ -114,6 +110,23 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 20,
+
+    loginTextContianer: {
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: 30,
+      borderRadius: 5,
+      padding: 10,
+      backgroundColor: "#0b0b21",
+    },
+
+    loginText: {
+      color: "white",
+      fontSize: 16,
+      fontWeight: "bold",
+      textAlign: "center",
+      letterSpacing: 1,
+    },
 
     buttonText: {
       color: "white",
@@ -257,6 +270,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     height: 500,
     width: "90%",
+    paddingTop: 20,
     padding: 10,
     alignItems: "center",
     shadowColor: "#000",
