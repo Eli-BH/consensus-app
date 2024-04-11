@@ -19,30 +19,30 @@ const AddGroupModal = ({ setOpen, open }) => {
       }}
     >
       <View style={styles.centeredView}>
-        <View>
-          <Text style={styles.modalText}>Create a group:</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Group name"
-            placeholderTextColor="#004"
-          />
-        </View>
+        <View style={styles.modalView}>
+          <View style={styles.container}>
+            <Text style={styles.modalText}>Create a new group:</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Group name"
+              placeholderTextColor="#004"
+            />
+          </View>
 
-        <View>
-          <Text style={styles.modalText}>Use Invite code:</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Invite code"
-            placeholderTextColor="#004"
-          />
-        </View>
+          <View style={styles.container}>
+            <Text style={styles.modalText}>Use Invite code:</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Invite code"
+              placeholderTextColor="#004"
+            />
+          </View>
 
-        <View style={styles.submitContainer}>
           <TouchableOpacity
-            style={styles.openButton}
             onPress={() => {
               setOpen(!open);
             }}
+            style={styles.openButton}
           >
             <Text style={styles.textStyle}>Add Group</Text>
           </TouchableOpacity>
@@ -55,28 +55,17 @@ const AddGroupModal = ({ setOpen, open }) => {
 export default AddGroupModal;
 
 const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-    width: 200,
-    borderRadius: 5,
-  },
-
   centeredView: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 12,
   },
   modalView: {
-    margin: 20,
     backgroundColor: "#4ccdc4",
     borderRadius: 5,
-    height: "60%",
+    height: 300,
     width: "90%",
-    padding: 35,
+    padding: 10,
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
@@ -86,10 +75,15 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+    justifyContent: "space-evenly",
   },
   modalText: {
-    marginBottom: 15,
-    textAlign: "center",
+    marginBottom: 5,
+    textAlign: "left",
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 16,
+    letterSpacing: 1,
   },
   textStyle: {
     color: "white",
@@ -101,9 +95,27 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     elevation: 2,
+    width: "50%",
   },
   submitContainer: {
-    marginTop: 20,
     width: "100%",
+  },
+  input: {
+    borderRadius: 5,
+    color: "white",
+    fontSize: 18,
+    borderColor: "#00fa9a",
+    borderWidth: 1,
+    padding: 5,
+    paddingHorizontal: 10,
+    backgroundColor: "#2a3e87",
+    width: "100%",
+    letterSpacing: 1,
+    fontWeight: "bold",
+  },
+  container: {
+    width: "100%",
+    padding: 10,
+    justifyContent: "flex-start",
   },
 });

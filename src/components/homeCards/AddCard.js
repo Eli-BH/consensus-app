@@ -6,6 +6,7 @@ import app from "../../../firebaseConfig";
 
 // React import is kept as per your project's requirements
 import React from "react";
+import AddGroupModal from "../Modals/AddGroupModal";
 
 const newGroup = {
   name: "Demo Group",
@@ -30,13 +31,16 @@ const AddCard = ({ setOpen }) => {
   // };
 
   return (
-    <TouchableOpacity style={styles.card} onPress={() => setOpen(true)}>
-      <View style={styles.iconContainer}>
-        <Text style={styles.icon}>+</Text>
-      </View>
+    <React.Fragment>
+      <AddGroupModal open={open} setOpen={setOpen} />
+      <TouchableOpacity style={styles.card} onPress={() => setOpen(!open)}>
+        <View style={styles.iconContainer}>
+          <Text style={styles.icon}>+</Text>
+        </View>
 
-      <Text style={styles.cardText}>Add group</Text>
-    </TouchableOpacity>
+        <Text style={styles.cardText}>Add group</Text>
+      </TouchableOpacity>
+    </React.Fragment>
   );
 };
 
@@ -49,7 +53,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 20, // Keep one padding property
     width: "100%",
-    height: "15%",
+    height: 100,
     maxHeight: 120,
     borderWidth: 4,
     borderColor: "#004",
