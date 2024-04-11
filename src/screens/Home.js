@@ -12,7 +12,7 @@ const Home = ({ navigation }) => {
       </View>
 
       <View style={styles.bodyCard}>
-        <AddCard setOpen={setOpen} />
+        <AddCard open={open} setOpen={setOpen} />
         <GroupCard navigation={navigation} />
       </View>
     </View>
