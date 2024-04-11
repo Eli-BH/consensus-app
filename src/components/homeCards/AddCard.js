@@ -15,7 +15,7 @@ const newGroup = {
   ratings: [{ movie: "1", rating: "5", user: "1" }],
 };
 
-const AddCard = ({ open, setOpen }) => {
+const AddCard = ({ setOpen }) => {
   // const db = getFirestore(app); // Initialize Firestore
 
   // const addGroup = async (groupData) => {

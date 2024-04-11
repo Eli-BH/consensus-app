@@ -4,7 +4,6 @@ import {
   View,
   Modal,
   TouchableOpacity,
-  StyleSheet,
   TextInput,
 } from "react-native";
 import React from "react";
