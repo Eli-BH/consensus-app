@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   FlatList,
   ScrollView,
-  Modal,
 } from "react-native";
 import React, { useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -13,26 +12,12 @@ import MovieCard from "../components/groupCards/MovieCard";
 import InviteModal from "../components/Modals/InviteModal";
 import MovieDetailsModal from "../components/Modals/MovieDetailsModal";
 import AddMovieModal from "../components/Modals/AddMovieModal";
+import getStars from "../utils/functions/getStars";
 
 const Group = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [addMovieModal, setAddMovieModal] = useState(false);
   const [inviteModal, setInviteModal] = useState(false);
-
-  const getStars = (stars, size = 24) => {
-    if (stars > 5) stars /= 2;
-    let starArray = [];
-    for (let i = 1; i <= stars; i += 0.5) {
-      i % 1 === 0 &&
-        starArray.push(<Ionicons name="star" size={size} color="#ffd100" />);
-    }
-
-    if (stars % 1 !== 0) {
-      starArray.push(<Ionicons name="star-half" size={size} color="#ffd100" />);
-    }
-
-    return starArray;
-  };
 
   return (
     <View style={styles.container}>

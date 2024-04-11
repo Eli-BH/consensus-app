@@ -71,9 +71,9 @@ const MovieCard = ({ setModalVisible, modalVisible }) => {
           data={getStars(3.5, 12)}
           horizontal
           renderItem={({ item }) => item}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={(_, index) => index.toString()}
         />
-        <Text style={styles.avgRatingText}>Consensus</Text>
+        <Text style={styles.avgRatingText}>Avg. rating</Text>
       </View>
     </TouchableOpacity>
   );
