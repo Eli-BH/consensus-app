@@ -5,7 +5,6 @@ import {
   View,
   Modal,
   TouchableOpacity,
-  KeyboardAvoidingView,
   FlatList,
   TextInput,
 } from "react-native";
