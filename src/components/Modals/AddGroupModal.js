@@ -6,7 +6,10 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
-import React from "react";
+import { getFirestore, collection, doc, setDoc } from "firebase/firestore";
+
+import app from "../../../firebaseConfig";
+import { useState } from "react";
 
 const AddGroupModal = ({ setOpen, open }) => {
   return (
