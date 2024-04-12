@@ -1,21 +1,14 @@
-import { StyleSheet } from "react-native";
 import { Provider } from "react-redux";
 import AppNavigator from "./src/navigators/AppNavigator";
 import { NavigationContainer } from "@react-navigation/native";
+import { store } from "./src/redux/store";
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <AppNavigator />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <AppNavigator />
+      </NavigationContainer>
+    </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

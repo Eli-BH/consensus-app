@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import AuthSlice from "./slices/AuthSlice";
+import { firebaseApi } from "./services/firebase";
 
 export const store = configureStore({
   reducer: {
-    auth: AuthSlice,
+    [firebaseApi.reducerPath]: firebaseApi.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(firebaseApi.middleware),
 });
