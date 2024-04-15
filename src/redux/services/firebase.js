@@ -1,49 +1,42 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { db } from "../../../firebaseConfig";
-import { doc, getDoc, updateDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
-// custom baseQuery to use Firebase
-
+// Custom baseQuery to use Firebase
 const firebaseBaseQuery = async ({ method, data }) => {
   try {
     switch (method) {
       case "fetchGroup":
         const groupDoc = doc(db, "groups", data.id);
         const docSnap = await getDoc(groupDoc);
+        return docSnap.exists()
+          ? { data: docSnap.data() }
+          : { error: "Group not found" };
 
-        if (docSnap.exists()) {
-          return { data: docSnap.data() };
-        } else {
-          return { error: "Group not found" };
-        }
       case "createGroup":
         const groupRef = doc(db, "groups", data.name);
         await setDoc(groupRef, data);
-        if (groupRef.id) {
-          return { data: { id: groupRef.id, ...data } };
-        } else {
-          return { error: "Group not created" };
-        }
+        return { data: { id: groupRef.id, ...data } };
 
       default:
         return { error: "Method not found" };
     }
   } catch (error) {
-    return { error };
+    return { error: error.message || "An error occurred" };
   }
 };
 
-export const firebaseApi = createApi({
-  reducerPath: "firebaseApi",
+export const groupsApi = createApi({
+  reducerPath: "groupsApi",
   baseQuery: firebaseBaseQuery,
   endpoints: (builder) => ({
     fetchGroup: builder.query({
       query: (id) => ({ method: "fetchGroup", data: { id } }),
     }),
     createGroup: builder.mutation({
-      query: (data) => ({ method: "createGroup", data }),
+      query: (group) => ({ method: "createGroup", data: group }),
     }),
   }),
 });
 
-export const { useGetUserByIdQuery, useCreateUserMutation } = firebaseApi;
+export const { useFetchGroupQuery, useCreateGroupMutation } = groupsApi;

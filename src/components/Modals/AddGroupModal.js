@@ -6,12 +6,31 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
-import { getFirestore, collection, doc, setDoc } from "firebase/firestore";
 
-import app from "../../../firebaseConfig";
+import {
+  useFetchGroupQuery,
+  useCreateGroupMutation,
+} from "../../redux/services/firebase";
+
 import { useState } from "react";
 
 const AddGroupModal = ({ setOpen, open }) => {
+  const [groupName, setGroupName] = useState("");
+
+  const { data: group, isFetching, error } = useFetchGroupQuery("1");
+  const [createGroup, { isLoading: isCreating }] = useCreateGroupMutation();
+
+  const handleCreateGroup = async () => {
+    if (groupName) {
+      await createGroup({
+        name: groupName,
+        members: ["testEmail@gmail.com"],
+        createdBy: "testEmail@gmail.com",
+      });
+      setGroupName("");
+    }
+  };
+
   return (
     <Modal
       animationType="fade"
